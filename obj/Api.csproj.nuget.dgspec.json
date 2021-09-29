@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "F:\\teste\\Api\\Api.csproj": {}
+    "F:\\GitHub\\rest-api\\Api.csproj": {}
   },
   "projects": {
-    "F:\\teste\\Api\\Api.csproj": {
+    "F:\\GitHub\\rest-api\\Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\teste\\Api\\Api.csproj",
+        "projectUniqueName": "F:\\GitHub\\rest-api\\Api.csproj",
         "projectName": "Api",
-        "projectPath": "F:\\teste\\Api\\Api.csproj",
+        "projectPath": "F:\\GitHub\\rest-api\\Api.csproj",
         "packagesPath": "C:\\Users\\Victor\\.nuget\\packages\\",
-        "outputPath": "F:\\teste\\Api\\obj\\",
+        "outputPath": "F:\\GitHub\\rest-api\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\Visual Studio Components\\NuGetPackages"
