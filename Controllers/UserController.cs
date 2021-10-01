@@ -27,5 +27,13 @@ namespace Api.Controllers
             var users = _userRepository.GetUser();
             return users;
         }
+
+        [HttpGet("{id}")]
+        [AllowAnonymous]
+        public User GetUser(Guid id)
+        {
+            var users = _userRepository.GetUser(id);
+            return users;
+        }
     }
 }
