@@ -30,10 +30,14 @@ namespace Api.Controllers
 
         [HttpGet("{id}")]
         [AllowAnonymous]
-        public User GetUser(Guid id)
+        public ActionResult<User> GetUser(Guid id)
         {
-            var users = _userRepository.GetUser(id);
-            return users;
+            var user = _userRepository.GetUser(id);
+
+            if(user is null)
+                return NotFound();
+
+            return user;
         }
     }
 }
