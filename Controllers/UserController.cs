@@ -1,4 +1,5 @@
-﻿using Api.Entities;
+﻿using Api.Dto;
+using Api.Entities;
 using Api.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -13,31 +14,32 @@ namespace Api.Controllers
     [Route("user")]
     public class UserController : ControllerBase
     {
-        private readonly UserRepository _userRepository;
+        private readonly IUserRepository userRepository;
 
-        public UserController()
+        public UserController(IUserRepository userRepository)
         {
-            _userRepository = new UserRepository();
+            this.userRepository = new UserRepository();
         }
 
         [HttpGet]
         [AllowAnonymous]
-        public IEnumerable<User> GetUser()
+        public IEnumerable<UserDTO> GetUser()
         {
-            var users = _userRepository.GetUser();
+            var users = userRepository.GetUser().Select(user => user.AsDTO());
+
             return users;
         }
 
         [HttpGet("{id}")]
         [AllowAnonymous]
-        public ActionResult<User> GetUser(Guid id)
+        public ActionResult<UserDTO> GetUser(Guid id)
         {
-            var user = _userRepository.GetUser(id);
+            var user = userRepository.GetUser(id);
 
             if(user is null)
                 return NotFound();
 
-            return user;
+            return user.AsDTO();
         }
     }
 }
