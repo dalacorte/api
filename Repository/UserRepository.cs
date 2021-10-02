@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Api.Repository
 {
-    public class UserRepository
+    public class UserRepository : IUserRepository
     {
         private readonly List<User> users = new()
         {
@@ -20,7 +20,7 @@ namespace Api.Repository
 
         public User GetUser(Guid id)
         {
-            return users.Where(user => user.Id == id).FirstOrDefault();
+            return users.Where(user => user.Id == id).SingleOrDefault();
         }
     }
 }
