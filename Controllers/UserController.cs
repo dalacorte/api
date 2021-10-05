@@ -41,5 +41,24 @@ namespace Api.Controllers
 
             return user.AsDTO();
         }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult<UserDTO> CreateUser(UserDTO userDTO)
+        {
+            User user = new()
+            {
+                Id = Guid.NewGuid(),
+                Email = userDTO.Email,
+                Name = userDTO.Name,
+                ProfilePicture = userDTO.ProfilePicture,
+                EmailVerified = userDTO.EmailVerified,
+                CreatedDate = DateTimeOffset.UtcNow
+            };
+
+            userRepository.CreateUser(user);
+
+            return CreatedAtAction(nameof(GetUser), new { id = userDTO.Id }, user.AsDTO());
+        }
     }
 }
