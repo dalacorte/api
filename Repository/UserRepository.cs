@@ -10,7 +10,7 @@ namespace Api.Repository
     {
         private readonly List<User> users = new()
         {
-            new User { Id = Guid.NewGuid(), Email = "email@email.com", Name = "victor", ProfilePicture = "github.com/dalacorte", EmailVerified = true }
+            new User { Id = Guid.NewGuid(), Email = "email@email.com", Name = "victor", ProfilePicture = "github.com/dalacorte", EmailVerified = true, CreatedDate = DateTimeOffset.UtcNow }
         };
 
         public IEnumerable<User> GetUser()
@@ -21,6 +21,11 @@ namespace Api.Repository
         public User GetUser(Guid id)
         {
             return users.Where(user => user.Id == id).SingleOrDefault();
+        }
+
+        public void CreateUser(User user)
+        {
+            users.Add(user);
         }
     }
 }

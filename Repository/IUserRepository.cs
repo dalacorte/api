@@ -8,5 +8,6 @@ namespace Api.Repository
     {
         IEnumerable<User> GetUser();
         User GetUser(Guid id);
+        void CreateUser(User user);
     }
 }
