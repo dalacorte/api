@@ -5,12 +5,13 @@ using System.Threading.Tasks;
 
 namespace Api.Entities
 {
-    public record User
+    public class User
     {
         public Guid Id { get; init; }
         public string Email { get; init; }
         public string Name { get; init; }
         public string ProfilePicture { get; init; }
         public bool EmailVerified { get; init; }
+        public DateTimeOffset CreatedDate { get; init; }
     }
 }
