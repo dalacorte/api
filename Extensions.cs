@@ -17,7 +17,8 @@ namespace Api
                 Email = user.Email,
                 Name = user.Name,
                 ProfilePicture = user.ProfilePicture,
-                EmailVerified = user.EmailVerified
+                EmailVerified = user.EmailVerified,
+                CreatedDate = user.CreatedDate
             };
         }
     }
