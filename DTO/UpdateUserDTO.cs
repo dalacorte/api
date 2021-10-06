@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Api.Dto
 {
-    public class UpdateUserDTO
+    public record UpdateUserDTO
     {
         [Required]
         public string Email { get; init; }

@@ -44,7 +44,7 @@ namespace Api.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public ActionResult<UserDTO> CreateUser(UserDTO userDTO)
+        public ActionResult<UserDTO> CreateUser(CreateUserDTO userDTO)
         {
             User user = new()
             {
@@ -58,7 +58,7 @@ namespace Api.Controllers
 
             userRepository.CreateUser(user);
 
-            return CreatedAtAction(nameof(GetUser), new { id = userDTO.Id }, user.AsDTO());
+            return CreatedAtAction(nameof(GetUser), new { id = user.Id }, user.AsDTO());
         }
 
         [HttpPut("{id}")]

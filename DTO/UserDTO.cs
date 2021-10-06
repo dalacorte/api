@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Api.Dto
 {
-    public class UserDTO
+    public record UserDTO
     {
         public Guid Id { get; init; }
         public string Email { get; init; }
