@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Api.Entities
 {
-    public class User
+    public record User
     {
         public Guid Id { get; init; }
         public string Email { get; init; }
