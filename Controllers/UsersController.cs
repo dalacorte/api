@@ -1,6 +1,6 @@
 ﻿using Api.Dto;
 using Api.Entities;
-using Api.Repository;
+using Api.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
