@@ -60,5 +60,41 @@ namespace Api.Controllers
 
             return CreatedAtAction(nameof(GetUser), new { id = userDTO.Id }, user.AsDTO());
         }
+
+        [HttpPut("{id}")]
+        [AllowAnonymous]
+        public ActionResult UpdateUser(Guid id, UpdateUserDTO userDTO)
+        {
+            var existingUser = userRepository.GetUser(id);
+
+            if(existingUser is null)
+                return NotFound();
+
+            User updatedUser = existingUser with
+            {
+                Email = userDTO.Email,
+                Name = userDTO.Name,
+                ProfilePicture = userDTO.ProfilePicture,
+                EmailVerified = userDTO.EmailVerified
+            };
+
+            userRepository.UpdateUser(updatedUser);
+
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        [AllowAnonymous]
+        public ActionResult DeleteUser(Guid id)
+        {
+            var existingUser = userRepository.GetUser(id);
+
+            if (existingUser is null)
+                return NotFound();
+
+            userRepository.DeleteUser(id);
+
+            return NoContent();
+        }
     }
 }

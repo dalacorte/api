@@ -9,5 +9,7 @@ namespace Api.Repository
         IEnumerable<User> GetUser();
         User GetUser(Guid id);
         void CreateUser(User user);
+        void UpdateUser(User user);
+        void DeleteUser(Guid id);
     }
 }

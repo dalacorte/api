@@ -27,5 +27,17 @@ namespace Api.Repository
         {
             users.Add(user);
         }
+
+        public void UpdateUser(User user)
+        {
+            var index = users.FindIndex(u => u.Id == user.Id);
+            users[index] = user;
+        }
+
+        public void DeleteUser(Guid id)
+        {
+            var index = users.FindIndex(u => u.Id == id);
+            users.RemoveAt(index);
+        }
     }
 }
