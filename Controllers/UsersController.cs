@@ -11,21 +11,21 @@ using System.Threading.Tasks;
 namespace Api.Controllers
 {
     [ApiController]
-    [Route("user")]
-    public class UserController : ControllerBase
+    [Route("users")]
+    public class UsersController : ControllerBase
     {
-        private readonly IUserRepository userRepository;
+        private readonly IUserRepository repository;
 
-        public UserController(IUserRepository userRepository)
+        public UsersController(IUserRepository userRepository)
         {
-            this.userRepository = new UserRepository();
+            repository = userRepository;
         }
 
         [HttpGet]
         [AllowAnonymous]
         public IEnumerable<UserDTO> GetUser()
         {
-            var users = userRepository.GetUser().Select(user => user.AsDTO());
+            var users = repository.GetUser().Select(user => user.AsDTO());
 
             return users;
         }
@@ -34,7 +34,7 @@ namespace Api.Controllers
         [AllowAnonymous]
         public ActionResult<UserDTO> GetUser(Guid id)
         {
-            var user = userRepository.GetUser(id);
+            var user = repository.GetUser(id);
 
             if(user is null)
                 return NotFound();
@@ -56,7 +56,7 @@ namespace Api.Controllers
                 CreatedDate = DateTimeOffset.UtcNow
             };
 
-            userRepository.CreateUser(user);
+            repository.CreateUser(user);
 
             return CreatedAtAction(nameof(GetUser), new { id = user.Id }, user.AsDTO());
         }
@@ -65,7 +65,7 @@ namespace Api.Controllers
         [AllowAnonymous]
         public ActionResult UpdateUser(Guid id, UpdateUserDTO userDTO)
         {
-            var existingUser = userRepository.GetUser(id);
+            var existingUser = repository.GetUser(id);
 
             if(existingUser is null)
                 return NotFound();
@@ -78,7 +78,7 @@ namespace Api.Controllers
                 EmailVerified = userDTO.EmailVerified
             };
 
-            userRepository.UpdateUser(updatedUser);
+            repository.UpdateUser(updatedUser);
 
             return NoContent();
         }
@@ -87,12 +87,12 @@ namespace Api.Controllers
         [AllowAnonymous]
         public ActionResult DeleteUser(Guid id)
         {
-            var existingUser = userRepository.GetUser(id);
+            var existingUser = repository.GetUser(id);
 
             if (existingUser is null)
                 return NotFound();
 
-            userRepository.DeleteUser(id);
+            repository.DeleteUser(id);
 
             return NoContent();
         }
