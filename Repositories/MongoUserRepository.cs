@@ -22,32 +22,32 @@ namespace Api.Repositories
             usersCollection = database.GetCollection<User>(collectionName);
         }
 
-        public void CreateUser(User user)
+        public async Task CreateUserAsync(User user)
         {
-            usersCollection.InsertOne(user);
+            await usersCollection.InsertOneAsync(user);
         }
 
-        public void DeleteUser(Guid id)
-        {
-            var filter = filterBuilder.Eq(user => user.Id, id);
-            usersCollection.DeleteOne(filter);
-        }
-
-        public IEnumerable<User> GetUser()
-        {
-            return usersCollection.Find(new BsonDocument()).ToList();
-        }
-
-        public User GetUser(Guid id)
+        public async Task DeleteUserAsync(Guid id)
         {
             var filter = filterBuilder.Eq(user => user.Id, id);
-            return usersCollection.Find(filter).SingleOrDefault();
+            await usersCollection.DeleteOneAsync(filter);
         }
 
-        public void UpdateUser(User user)
+        public async Task <IEnumerable<User>> GetUserAsync()
+        {
+            return await usersCollection.Find(new BsonDocument()).ToListAsync();
+        }
+
+        public async Task<User> GetUserAsync(Guid id)
+        {
+            var filter = filterBuilder.Eq(user => user.Id, id);
+            return await usersCollection.Find(filter).SingleOrDefaultAsync();
+        }
+
+        public async Task UpdateUserAsync(User user)
         {
             var filter = filterBuilder.Eq(existingUser => existingUser.Id, user.Id);
-            usersCollection.ReplaceOne(filter, user);
+            await usersCollection.ReplaceOneAsync(filter, user);
         }
     }
 }

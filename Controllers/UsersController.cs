@@ -23,18 +23,18 @@ namespace Api.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public IEnumerable<UserDTO> GetUser()
+        public async Task<IEnumerable<UserDTO>> GetUser()
         {
-            var users = repository.GetUser().Select(user => user.AsDTO());
+            var users = (await repository.GetUserAsync()).Select(user => user.AsDTO());
 
             return users;
         }
 
         [HttpGet("{id}")]
         [AllowAnonymous]
-        public ActionResult<UserDTO> GetUser(Guid id)
+        public async Task<ActionResult<UserDTO>> GetUser(Guid id)
         {
-            var user = repository.GetUser(id);
+            var user = await repository.GetUserAsync(id);
 
             if(user is null)
                 return NotFound();
@@ -44,7 +44,7 @@ namespace Api.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public ActionResult<UserDTO> CreateUser(CreateUserDTO userDTO)
+        public async Task<ActionResult<UserDTO>> CreateUser(CreateUserDTO userDTO)
         {
             User user = new()
             {
@@ -56,16 +56,16 @@ namespace Api.Controllers
                 CreatedDate = DateTimeOffset.UtcNow
             };
 
-            repository.CreateUser(user);
+            await repository.CreateUserAsync(user);
 
-            return CreatedAtAction(nameof(GetUser), new { id = user.Id }, user.AsDTO());
+            return CreatedAtAction(nameof(CreateUser), new { id = user.Id }, user.AsDTO());
         }
 
         [HttpPut("{id}")]
         [AllowAnonymous]
-        public ActionResult UpdateUser(Guid id, UpdateUserDTO userDTO)
+        public async Task <ActionResult> UpdateUser(Guid id, UpdateUserDTO userDTO)
         {
-            var existingUser = repository.GetUser(id);
+            var existingUser = await repository.GetUserAsync(id);
 
             if(existingUser is null)
                 return NotFound();
@@ -78,21 +78,21 @@ namespace Api.Controllers
                 EmailVerified = userDTO.EmailVerified
             };
 
-            repository.UpdateUser(updatedUser);
+            await repository .UpdateUserAsync(updatedUser);
 
             return NoContent();
         }
 
         [HttpDelete("{id}")]
         [AllowAnonymous]
-        public ActionResult DeleteUser(Guid id)
+        public async Task<ActionResult> DeleteUser(Guid id)
         {
-            var existingUser = repository.GetUser(id);
+            var existingUser = await repository.GetUserAsync(id);
 
             if (existingUser is null)
                 return NotFound();
 
-            repository.DeleteUser(id);
+            await repository.DeleteUserAsync(id);
 
             return NoContent();
         }

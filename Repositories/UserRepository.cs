@@ -13,31 +13,35 @@ namespace Api.Repositories
             new User { Id = Guid.NewGuid(), Email = "email@email.com", Name = "victor", ProfilePicture = "github.com/dalacorte", EmailVerified = true, CreatedDate = DateTimeOffset.UtcNow }
         };
 
-        public IEnumerable<User> GetUser()
+        public async Task<IEnumerable<User>> GetUserAsync()
         {
-            return users;
+            return await Task.FromResult(users);
         }
 
-        public User GetUser(Guid id)
+        public async Task<User> GetUserAsync(Guid id)
         {
-            return users.Where(user => user.Id == id).SingleOrDefault();
+            var user = users.Where(user => user.Id == id).SingleOrDefault();
+            return await Task.FromResult(user);
         }
 
-        public void CreateUser(User user)
+        public async Task CreateUserAsync(User user)
         {
             users.Add(user);
+            await Task.CompletedTask;
         }
 
-        public void UpdateUser(User user)
+        public async Task UpdateUserAsync(User user)
         {
             var index = users.FindIndex(u => u.Id == user.Id);
             users[index] = user;
+            await Task.CompletedTask;
         }
 
-        public void DeleteUser(Guid id)
+        public async Task DeleteUserAsync(Guid id)
         {
             var index = users.FindIndex(u => u.Id == id);
             users.RemoveAt(index);
+            await Task.CompletedTask;
         }
     }
 }
