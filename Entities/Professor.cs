@@ -12,8 +12,10 @@ namespace Api.Entities
         public string Name { get; init; }
         public string Username { get; init; }
         public string Password { get; init; }
+        public IEnumerable<Post> Post { get; init; }
         public string ProfilePicture { get; init; }
         public bool EmailVerified { get; init; }
+        public bool CanCreate { get; init; }
         public DateTimeOffset CreatedDate { get; init; }
     }
 }
