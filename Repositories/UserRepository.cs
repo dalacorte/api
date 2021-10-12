@@ -8,10 +8,7 @@ namespace Api.Repositories
 {
     public class UserRepository : IUserRepository
     {
-        private readonly List<User> users = new()
-        {
-            new User { Id = Guid.NewGuid(), Email = "email@email.com", Name = "victor", Username = "victor", Password="123", ProfilePicture = "github.com/dalacorte", EmailVerified = true, CreatedDate = DateTimeOffset.UtcNow }
-        };
+        private readonly List<User> users = new();
 
         public async Task<IEnumerable<User>> GetUserAsync()
         {
