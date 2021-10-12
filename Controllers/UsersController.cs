@@ -25,7 +25,7 @@ namespace Api.Controllers
         [AllowAnonymous]
         public async Task<IEnumerable<UserDTO>> GetUser()
         {
-            var users = (await repository.GetUserAsync()).Select(user => user.AsDTO());
+            var users = (await repository.GetUser()).Select(user => user.AsUserDTO());
 
             return users;
         }
@@ -34,12 +34,12 @@ namespace Api.Controllers
         [AllowAnonymous]
         public async Task<ActionResult<UserDTO>> GetUser(Guid id)
         {
-            var user = await repository.GetUserAsync(id);
+            var user = await repository.GetUser(id);
 
             if(user is null)
                 return NotFound();
 
-            return user.AsDTO();
+            return user.AsUserDTO();
         }
 
         [HttpPost]
@@ -58,16 +58,16 @@ namespace Api.Controllers
                 CreatedDate = DateTimeOffset.UtcNow
             };
 
-            await repository.CreateUserAsync(user);
+            await repository.CreateUser(user);
 
-            return CreatedAtAction(nameof(CreateUser), new { id = user.Id }, user.AsDTO());
+            return CreatedAtAction(nameof(CreateUser), new { id = user.Id }, user.AsUserDTO());
         }
 
         [HttpPut("{id}")]
         [AllowAnonymous]
         public async Task <ActionResult> UpdateUser(Guid id, UpdateUserDTO userDTO)
         {
-            var existingUser = await repository.GetUserAsync(id);
+            var existingUser = await repository.GetUser(id);
 
             if(existingUser is null)
                 return NotFound();
@@ -81,7 +81,7 @@ namespace Api.Controllers
                 EmailVerified = userDTO.EmailVerified
             };
 
-            await repository .UpdateUserAsync(updatedUser);
+            await repository.UpdateUser(updatedUser);
 
             return NoContent();
         }
@@ -90,12 +90,12 @@ namespace Api.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> DeleteUser(Guid id)
         {
-            var existingUser = await repository.GetUserAsync(id);
+            var existingUser = await repository.GetUser(id);
 
             if (existingUser is null)
                 return NotFound();
 
-            await repository.DeleteUserAsync(id);
+            await repository.DeleteUser(id);
 
             return NoContent();
         }

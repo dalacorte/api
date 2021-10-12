@@ -10,31 +10,31 @@ namespace Api.Repositories
     {
         private readonly List<User> users = new();
 
-        public async Task<IEnumerable<User>> GetUserAsync()
+        public async Task<IEnumerable<User>> GetUser()
         {
             return await Task.FromResult(users);
         }
 
-        public async Task<User> GetUserAsync(Guid id)
+        public async Task<User> GetUser(Guid id)
         {
             var user = users.Where(user => user.Id == id).SingleOrDefault();
             return await Task.FromResult(user);
         }
 
-        public async Task CreateUserAsync(User user)
+        public async Task CreateUser(User user)
         {
             users.Add(user);
             await Task.CompletedTask;
         }
 
-        public async Task UpdateUserAsync(User user)
+        public async Task UpdateUser(User user)
         {
             var index = users.FindIndex(u => u.Id == user.Id);
             users[index] = user;
             await Task.CompletedTask;
         }
 
-        public async Task DeleteUserAsync(Guid id)
+        public async Task DeleteUser(Guid id)
         {
             var index = users.FindIndex(u => u.Id == id);
             users.RemoveAt(index);
