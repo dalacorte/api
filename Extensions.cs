@@ -16,6 +16,8 @@ namespace Api
                 Id = user.Id,
                 Email = user.Email,
                 Name = user.Name,
+                Username = user.Name,
+                Password = user.Password,
                 ProfilePicture = user.ProfilePicture,
                 EmailVerified = user.EmailVerified,
                 CreatedDate = user.CreatedDate

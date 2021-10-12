@@ -52,7 +52,7 @@ namespace Api.Controllers
                 Email = userDTO.Email,
                 Name = userDTO.Name,
                 Username = userDTO.Username,
-                Password = userDTO.pass
+                Password = userDTO.Password,
                 ProfilePicture = userDTO.ProfilePicture,
                 EmailVerified = userDTO.EmailVerified,
                 CreatedDate = DateTimeOffset.UtcNow
@@ -76,6 +76,7 @@ namespace Api.Controllers
             {
                 Email = userDTO.Email,
                 Name = userDTO.Name,
+                Password = userDTO.Password,
                 ProfilePicture = userDTO.ProfilePicture,
                 EmailVerified = userDTO.EmailVerified
             };
