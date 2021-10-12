@@ -51,6 +51,8 @@ namespace Api.Controllers
                 Id = Guid.NewGuid(),
                 Email = userDTO.Email,
                 Name = userDTO.Name,
+                Username = userDTO.Username,
+                Password = userDTO.pass
                 ProfilePicture = userDTO.ProfilePicture,
                 EmailVerified = userDTO.EmailVerified,
                 CreatedDate = DateTimeOffset.UtcNow

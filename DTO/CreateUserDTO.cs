@@ -12,6 +12,10 @@ namespace Api.Dto
         public string Email { get; init; }
         [Required]
         public string Name { get; init; }
+        [Required]
+        public string Username { get; init; }
+        [Required]
+        public string Password { get; init; }
         public string ProfilePicture { get; init; }
         [Required]
         public bool EmailVerified { get; init; }

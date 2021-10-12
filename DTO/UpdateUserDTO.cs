@@ -8,12 +8,10 @@ namespace Api.Dto
 {
     public record UpdateUserDTO
     {
-        [Required]
         public string Email { get; init; }
-        [Required]
         public string Name { get; init; }
+        public string Password { get; init; }
         public string ProfilePicture { get; init; }
-        [Required]
         public bool EmailVerified { get; init; }
     }
 }
