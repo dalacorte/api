@@ -5,7 +5,15 @@ using System.Threading.Tasks;
 
 namespace Api.Entities
 {
-    public class Post
+    public record Post
     {
+        public Guid Id { get; init; }
+        public DateTimeOffset CreatedDate { get; init; }
+        public Professor Author { get; init; }
+        public string Title { get; init; }
+        public string Content { get; init; }
+        public string Attachment { get; init; }
+        public Tag Tag { get; init; }
+        
     }
 }
