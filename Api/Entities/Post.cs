@@ -13,7 +13,6 @@ namespace Api.Entities
         public string Title { get; init; }
         public string Content { get; init; }
         public string Attachment { get; init; }
-        public Tag Tag { get; init; }
-        
+        public IEnumerable<Tag> Tag { get; init; }
     }
 }
