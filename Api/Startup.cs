@@ -43,6 +43,7 @@ namespace Api
 
             services.AddSingleton<IUserRepository, MongoUserRepository>();
             services.AddSingleton<IProfessorRepository, MongoProfessorRepository>();
+            services.AddSingleton<ITagRepository, MongoTagRepository>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
