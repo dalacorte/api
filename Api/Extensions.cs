@@ -1,4 +1,5 @@
 ﻿using Api.Dto;
+using Api.DTO.Tag;
 using Api.Entities;
 using System;
 using System.Collections.Generic;
@@ -38,6 +39,14 @@ namespace Api
                 EmailVerified = professor.EmailVerified,
                 CanCreate = professor.CanCreate,
                 CreatedDate = professor.CreatedDate
+            };
+        }
+
+        public static TagDTO AsTagDTO(this Tag tag)
+        {
+            return new TagDTO
+            {
+                Tags = tag.Tags
             };
         }
     }
