@@ -1,4 +1,5 @@
 ﻿using Api.Dto;
+using Api.DTO.Org;
 using Api.DTO.Tag;
 using Api.Entities;
 using System;
@@ -39,6 +40,21 @@ namespace Api
                 EmailVerified = professor.EmailVerified,
                 CanCreate = professor.CanCreate,
                 CreatedDate = professor.CreatedDate
+            };
+        }
+
+        public static OrgDTO AsOrgDTO(this Org org)
+        {
+            return new OrgDTO
+            {
+                Id = org.Id,
+                Name = org.Name,
+                Administrator = org.Administrator,
+                Moderator = org.Moderator,
+                Users = org.Users,
+                Posts = org.Posts,
+                Private = org.Private,
+                CreatedDate = org.CreatedDate
             };
         }
 
