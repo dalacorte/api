@@ -14,5 +14,7 @@ namespace Api.Entities
         public string Content { get; init; }
         public string Attachment { get; init; }
         public IEnumerable<Tag> Tag { get; init; }
+        #nullable enable
+        public Org? Org { get; init; }
     }
 }
