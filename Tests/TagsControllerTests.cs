@@ -3,7 +3,7 @@ using Xunit;
 
 namespace Tests
 {
-    public class UsersControllerTests
+    public class TagsControllerTests
     {
         [Fact]
         public void Test1()
