@@ -11,6 +11,8 @@ namespace Api.Repositories
         Task<IEnumerable<Org>> GetOrg();
         Task CreateOrg(Org org);
         Task UpdateOrg(Org org);
+        Task UpdateModeratorOrg(Org org);
+        Task UpdateUserOrg(Org org);
         Task DeleteOrg(Guid id);
     }
 }

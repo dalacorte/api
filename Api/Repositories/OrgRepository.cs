@@ -34,6 +34,20 @@ namespace Api.Repositories
             await Task.CompletedTask;
         }
 
+        public async Task UpdateUserOrg(Org org)
+        {
+            var index = orgs.FindIndex(u => u.Id == org.Id);
+            orgs[index] = org;
+            await Task.CompletedTask;
+        }
+
+        public async Task UpdateModeratorOrg(Org org)
+        {
+            var index = orgs.FindIndex(m => m.Id == org.Id);
+            orgs[index] = org;
+            await Task.CompletedTask;
+        }
+
         public async Task DeleteOrg(Guid id)
         {
             var index = orgs.FindIndex(o => o.Id == id);

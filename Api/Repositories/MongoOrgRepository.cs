@@ -49,5 +49,17 @@ namespace Api.Repositories
             var filter = filterBuilder.Eq(existingOrg => existingOrg.Id, org.Id);
             await orgsCollection.ReplaceOneAsync(filter, org);
         }
+
+        public async Task UpdateModeratorOrg(Org org)
+        {
+            var filter = filterBuilder.Eq(existingModeratorOrg => existingModeratorOrg.Id, org.Id);
+            await orgsCollection.ReplaceOneAsync(filter, org);
+        }
+
+        public async Task UpdateUserOrg(Org org)
+        {
+            var filter = filterBuilder.Eq(existingUserOrg => existingUserOrg.Id, org.Id);
+            await orgsCollection.ReplaceOneAsync(filter, org);
+        }
     }
 }
