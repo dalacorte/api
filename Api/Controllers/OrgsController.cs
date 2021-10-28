@@ -82,6 +82,44 @@ namespace Api.Controllers
             return NoContent();
         }
 
+        [HttpPut("{id}/updateModerator")]
+        [AllowAnonymous]
+        public async Task<ActionResult> UpdateModeratorOrg(Guid id, UpdateModeratorOrgDTO moderatorOrgDTo)
+        {
+            var existingModeratorOrg = await repository.GetOrg(id);
+
+            if (existingModeratorOrg is null)
+                return NotFound();
+
+            Org updatedModeratorOrg = existingModeratorOrg with
+            {
+                Moderator = moderatorOrgDTo.Moderator
+            };
+
+            await repository.UpdateModeratorOrg(updatedModeratorOrg);
+
+            return NoContent();
+        }
+
+        [HttpPut("{id}/updateUser")]
+        [AllowAnonymous]
+        public async Task<ActionResult> UpdateUserOrg(Guid id, UpdateUserOrgDTO userOrgDTo)
+        {
+            var existingUserOrg = await repository.GetOrg(id);
+
+            if (existingUserOrg is null)
+                return NotFound();
+
+            Org updatedUserOrg = existingUserOrg with
+            {
+                Users = userOrgDTo.Users
+            };
+
+            await repository.UpdateUserOrg(updatedUserOrg);
+
+            return NoContent();
+        }
+
         [HttpDelete("{id}")]
         [AllowAnonymous]
         public async Task<ActionResult> DeleteOrg(Guid id)
